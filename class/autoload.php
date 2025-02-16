@@ -4,15 +4,21 @@ class Conexion {
     private $pdo;
 
     private function __construct() {
-        $dsn = 'mysql:host=localhost;dbname=miproyecto';
-        $username = 'root';
-        $password = '';
+        // Configuración de la conexión (podría estar en un archivo config.php)
+        $config = [
+            'host' => 'localhost',
+            'dbname' => 'miproyecto',
+            'username' => 'root',
+            'password' => ''
+        ];
+
+        $dsn = "mysql:host={$config['host']};dbname={$config['dbname']}";
         
         try {
-            $this->pdo = new PDO($dsn, $username, $password);
+            $this->pdo = new PDO($dsn, $config['username'], $config['password']);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Error de conexión: " . $e->getMessage());
+            throw new Exception("Error de conexión: " . $e->getMessage());
         }
     }
 
