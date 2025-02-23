@@ -10,6 +10,98 @@
     <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <!-- Estilos adicionales para el gráfico -->
+    <style>
+        .chart-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 11.2px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .button.download {
+            background-color: #008CBA;
+        }
+        .button.download:hover {
+            background-color: #0077a3;
+        }
+        .info-text {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #333333;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        .info-text h2 {
+            font-size: 16.8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .info-text h3 {
+            font-size: 14px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .info-text p, .info-text ul li {
+            font-size: 11.2px;
+            line-height: 1.4;
+        }
+        .info-text ul {
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        .info-image {
+            margin-top: 0;
+            text-align: center;
+            height: 100%;
+        }
+        .info-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .text-image-container {
+            display: flex;
+            align-items: stretch; /* Asegura que ambos elementos tengan la misma altura */
+        }
+        .text-image-container .info-text {
+            flex: 1; /* Ocupa el espacio disponible */
+            margin-right: 20px; /* Espacio entre el texto y la imagen */
+        }
+        .text-image-container .info-image {
+            flex: 1; /* Ocupa el espacio disponible */
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333333;
+            border-radius: 10px;
+            font-size: 11.2px;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,31 +125,64 @@
         </div>
     </nav>
     
-    <!-- Dashboard -->
+    <!-- Contenido principal -->
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-4">
-                <a href="lista_categorias.html" class="text-decoration-none">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-folder me-2"></i> Categorías</h5>
-                            <p class="card-text" id="totalCategorias">Cargando...</p>
-                        </div>
+            <!-- Contenedor de texto e imagen -->
+            <div class="col-md-8">
+                <div class="text-image-container">
+                    <!-- Texto informativo -->
+                    <div class="info-text">
+                        <h2>Sistema de Gestión de Productos y Categorías</h2>
+                        <p>Bienvenido a nuestra plataforma de gestión, diseñada para simplificar y optimizar el control de tus productos y categorías.<br> Nuestro sistema ofrece una solución integral y fácil de usar, ideal para emprendedores, pequeñas empresas y profesionales<br> que buscan una herramienta eficiente para organizar su inventario.</p>
+                        <h3>Características Principales:</h3>
+                        <ul>
+                            <li><strong>Gestión de Categorías:</strong> Organiza tus productos en categorías personalizadas para una navegación y búsqueda más eficiente.</li>
+                            <li><strong>Control de Productos:</strong> Registra, actualiza y elimina productos de manera rápida y segura.</li>
+                            <li><strong>Interfaz Intuitiva:</strong> Diseño moderno y fácil de usar, accesible desde cualquier dispositivo.</li>
+                            <li><strong>Servicio Gratuito:</strong> Nuestra plataforma es completamente gratuita, sin costos ocultos ni limitaciones innecesarias.</li>
+                        </ul>
+                        <h3>¿Por qué elegirnos?</h3>
+                        <ul>
+                            <li><strong>Facilidad de uso:</strong> No necesitas conocimientos técnicos para empezar a gestionar tus productos.</li>
+                            <li><strong>Acceso 24/7:</strong> Tu información está disponible en cualquier momento y desde cualquier lugar.</li>
+                            <li><strong>Seguridad y Confiabilidad:</strong> Garantizamos la protección de tus datos con estándares de seguridad avanzados.</li>
+                        </ul>
                     </div>
-                </a>
+
+                    <!-- Imagen -->
+                    <div class="info-image">
+                        <img src="C:/wamp64/www/MIPROYECTO/assets/img/sofwere-gestion-almacen.jpg" alt="Expertos en gestión">
+                    </div>
+                </div>
             </div>
+
+            <!-- Columna derecha (gráfico interactivo) -->
             <div class="col-md-4">
-                <a href="lista_productos.html" class="text-decoration-none">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-box me-2"></i> Productos</h5>
-                            <p class="card-text" id="totalProductos">Cargando...</p>
-                        </div>
+                <div class="chart-container">
+                    <h1 style="font-size: 16.8px; color: #333333;">Gráfico de Ventas y Productos</h1>
+                    <div style="width: 100%; height: 200px;">
+                        <canvas id="myChart"></canvas>
                     </div>
-                </a>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="button" onclick="updateChart()">
+                            <i class="fas fa-sync-alt"></i> Actualizar Datos
+                        </button>
+                        <button class="button download" onclick="downloadChart()">
+                            <i class="fas fa-download"></i> Descargar Imagen
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p><strong>Desarrollado por:</strong> Renee Aponte</p>
+        <p><strong>Contacto:</strong> zadracvillanii@gmail.com</p>
+        <p><strong>Derechos reservados © 2025</strong></p>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -65,10 +190,168 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Scripts personalizados -->
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/notifications.js"></script>
     <script src="../../assets/js/form-validation.js"></script>
     <script src="../../assets/js/filters.js"></script>
+    <script src="../../assets/js/perfil.js"></script>
+
+    <!-- Script del gráfico interactivo -->
+    <script>
+        // Variables globales
+        let animationFrame;
+        let currentPosition = 0;
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Función para generar datos
+        function generateData() {
+            const data = [];
+            let value = 5 + Math.random() * 5;
+            for (let i = 0; i < 7; i++) {
+                value += 1 + Math.random() * 2;
+                data.push(value);
+            }
+            return data;
+        }
+
+        // Plugin para el punto animado
+        const animatedDots = {
+            id: 'animatedDots',
+            afterDraw: (chart) => {
+                const { ctx, chartArea, scales } = chart;
+                const { left, right, top, bottom } = chartArea;
+
+                chart.data.datasets.forEach((dataset, datasetIndex) => {
+                    const meta = chart.getDatasetMeta(datasetIndex);
+                    if (meta.hidden) return;
+
+                    const xScale = scales.x;
+                    const yScale = scales.y;
+                    const points = meta.data;
+                    
+                    const segment = Math.floor(currentPosition * (points.length - 1));
+                    const progress = (currentPosition * (points.length - 1)) % 1;
+
+                    if (segment < points.length - 1) {
+                        const currentPoint = points[segment];
+                        const nextPoint = points[segment + 1];
+
+                        const x = currentPoint.x + (nextPoint.x - currentPoint.x) * progress;
+                        const y = currentPoint.y + (nextPoint.y - currentPoint.y) * progress;
+
+                        ctx.beginPath();
+                        ctx.arc(x, y, 8, 0, Math.PI * 2);
+                        ctx.fillStyle = dataset.borderColor;
+                        ctx.fill();
+                        ctx.strokeStyle = '#fff';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+                });
+            }
+        };
+
+        // Registrar el plugin
+        Chart.register(animatedDots);
+
+        // Crear gradientes
+        const gradientVentas = ctx.createLinearGradient(0, 0, 0, 200);
+        gradientVentas.addColorStop(0, 'rgba(75, 192, 192, 0.6)');
+        gradientVentas.addColorStop(1, 'rgba(75, 192, 192, 0)');
+
+        const gradientProductos = ctx.createLinearGradient(0, 0, 0, 200);
+        gradientProductos.addColorStop(0, 'rgba(255, 99, 132, 0.6)');
+        gradientProductos.addColorStop(1, 'rgba(255, 99, 132, 0)');
+
+        // Crear el gráfico
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+                datasets: [{
+                    label: 'Ventas',
+                    data: generateData(),
+                    backgroundColor: gradientVentas,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Productos',
+                    data: generateData(),
+                    backgroundColor: gradientProductos,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e0e0e0'
+                        },
+                        ticks: {
+                            color: '#333333'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#e0e0e0'
+                        },
+                        ticks: {
+                            color: '#333333'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#333333',
+                            font: {
+                                size: 9.8,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Función de animación
+        function animate() {
+            currentPosition += 0.005;
+            if (currentPosition >= 1) {
+                currentPosition = 0;
+            }
+            myChart.draw();
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        // Iniciar animación
+        animate();
+
+        // Función para actualizar datos
+        function updateChart() {
+            myChart.data.datasets[0].data = generateData();
+            myChart.data.datasets[1].data = generateData();
+            myChart.update('none');
+        }
+
+        // Función para descargar
+        function downloadChart() {
+            const link = document.createElement('a');
+            link.href = myChart.toBase64Image();
+            link.download = 'grafico-ventas.png';
+            link.click();
+        }
+    </script>
 </body>
 </html>
